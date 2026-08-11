@@ -2,16 +2,16 @@
 
 ## Causal, reproducible quantitative research infrastructure
 
-SHARK is a short-horizon mathematical pattern-discovery laboratory for liquid U.S. equities. The project is designed around one principle: research velocity only matters if the evidence remains causal, reproducible, and resistant to self-deception.
+SHARK is a short-horizon mathematical pattern-discovery laboratory for liquid U.S. equities. Its operating principle is simple: research velocity matters only when the evidence remains causal, reproducible, and resistant to self-deception.
 
-The private repository contains the implementation and research history. This public case study documents the architecture, experimental discipline, corrections, and current research record without publishing proprietary source code, raw market data, internal research logs, or live-trading logic.
+The implementation and research history remain private. This case study presents the laboratory architecture, experimental rules, corrections, and current research record.
 
 ## My role
 
-I own the research thesis, experimental rules, information boundaries, architecture constraints, acceptance criteria, and research decisions for SHARK. I review implementation and evidence against those rules, including whether a result is promoted, rejected, or sent back for another experiment. Development uses AI-assisted engineering tools under my direction; the scientific authority remains the frozen specification and immutable result bundle rather than the tool that produced code.
+I own the research thesis, experimental rules, information boundaries, architecture constraints, acceptance criteria, and research decisions for SHARK. I review implementation and evidence against those rules, including whether a result is promoted, rejected, or sent back for another experiment. AI-assisted engineering tools are part of the build workflow; scientific authority remains with the frozen specification and immutable result bundle.
 
 **Period:** active quantitative research program, August 2026.  
-**Current status:** the canonical research laboratory is operational locally, the 200-equity intraday corpus is frozen in PostgreSQL, the OCaml pattern engine and retrospective proof system are executable, and the first frozen state experiment has completed. No production trading or alpha claim is made.
+**Current status:** the canonical research laboratory is operational locally, the 200-equity intraday corpus is frozen in PostgreSQL, the OCaml pattern engine and retrospective proof system are executable, and the first frozen state experiment has completed. The system is research infrastructure, not a production trading stack.
 
 ## Research problem
 
@@ -69,7 +69,7 @@ observable
 -> prediction
 ```
 
-Prediction is not forbidden earlier, but it is not allowed to substitute for evidence that the underlying state exists.
+Prediction can be tested earlier, but it does not substitute for evidence that the underlying state exists.
 
 ### Economic validation comes later
 
@@ -92,7 +92,7 @@ The accepted run used:
 - **5,000 permutation/null replicates** and **10,000 cluster-bootstrap replicates** at the relevant stages
 - a fresh immutable result bundle with deterministic worker-independent RNG
 
-The result was deliberately mixed rather than forced into a success narrative:
+The result was mixed:
 
 > **`PASS_PRIMITIVE_PERSISTENCE_ONLY`**
 
@@ -100,11 +100,11 @@ On final holdout, clock-normalized absolute return magnitude, log volume, and lo
 
 The stronger joint-state hypothesis did **not** pass. Across both magnitude×volume and magnitude×trade-count families, **0 of 24 family-lag tests qualified** after the frozen circular-displacement null and multiple-testing correction. The smallest adjusted q-value was 0.175, above the pre-registered 0.05 gate.
 
-That negative result is retained as the result. The experiment was not rewritten to promote the joint state.
+That negative result remains the result. The experiment was not rewritten to promote the joint state.
 
 ## Corrections before the accepted run
 
-The experiment also records implementation errors discovered before scientific output existed. A few examples:
+The experiment records implementation errors discovered before scientific output existed. A few examples:
 
 - a bootstrap implementation accidentally collapsed repeated session draws, invalidating the intended cluster resampling
 - an RNG scheme based on name lengths could collide across equal-length symbols
@@ -112,7 +112,7 @@ The experiment also records implementation errors discovered before scientific o
 - a Stage B weighting path could fall back to uniform weights because the wrong session list was supplied
 - the first sequential implementation was projected at roughly 183 hours; removing redundant computation and using eight workers reduced the accepted run to about **22 minutes** without changing the frozen statistic
 
-Each correction was made before Stage A or Stage B scientific statistics were visible. The accepted record explicitly reports **no post-result scientific adaptation**.
+Each correction was made before Stage A or Stage B scientific statistics were visible. The accepted record reports **no post-result scientific adaptation**.
 
 ## Canonical data architecture
 
@@ -128,8 +128,8 @@ The canonical research core uses OCaml 5.2+, Dune, Caqti, Lwt, Lacaml, Domainsli
 
 ## Current boundary
 
-SHARK has a real data corpus, executable research engine, frozen experiments, retrospective proofs, and a completed first state experiment. It does **not** claim return predictability from that experiment, executable alpha, a profitable strategy, or production trading authority.
+SHARK has a real data corpus, executable research engine, frozen experiments, retrospective proofs, and a completed first state experiment. The completed experiment establishes primitive magnitude and activity persistence within its frozen window; it does not establish signed-return predictability, executable alpha, profitability, or production trading authority.
 
-The useful output is not only a positive finding. A well-specified negative result that closes a branch without contaminating the next experiment is equally part of the research record.
+The durable asset is the research process: a result can survive, fail, or close a branch without changing the evidence after the fact.
 
 [Architecture](ARCHITECTURE.md) · [Technical decisions](TECHNICAL_DECISIONS.md) · [Validation](VALIDATION.md) · [Back to profile](https://github.com/Andy11-cpu)
