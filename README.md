@@ -4,35 +4,34 @@
 
 SHARK is a short-horizon mathematical pattern-discovery laboratory for liquid U.S. equities. The project is designed around one principle: research velocity only matters if the evidence remains causal, reproducible, and resistant to self-deception.
 
-The private repository contains the implementation and research history. This public case study documents the architecture, experimental discipline, and current research surface without publishing proprietary source code, raw market data, internal research logs, or live-trading logic.
+The private repository contains the implementation and research history. This public case study documents the architecture, experimental discipline, corrections, and current research record without publishing proprietary source code, raw market data, internal research logs, or live-trading logic.
+
+## My role
+
+I own the research thesis, experimental rules, information boundaries, architecture constraints, acceptance criteria, and research decisions for SHARK. I review implementation and evidence against those rules, including whether a result is promoted, rejected, or sent back for another experiment. Development uses AI-assisted engineering tools under my direction; the scientific authority remains the frozen specification and immutable result bundle rather than the tool that produced code.
+
+**Period:** active quantitative research program, August 2026.  
+**Current status:** the canonical research laboratory is operational locally, the 200-equity intraday corpus is frozen in PostgreSQL, the OCaml pattern engine and retrospective proof system are executable, and the first frozen state experiment has completed. No production trading or alpha claim is made.
 
 ## Research problem
 
-Quantitative research can fail long before a model is wrong. Common failure modes include:
+Quantitative research can fail long before a model is wrong. Common failure modes include look-ahead leakage, specification changes after seeing validation results, survivorship or universe bias, repeated testing against the same evidence, weak null models, provenance loss, and treating a successful backtest as a tradable strategy.
 
-- look-ahead leakage
-- specification changes after seeing validation results
-- survivorship or universe bias
-- repeated testing against the same evidence
-- treating statistical predictability as executable alpha
-- losing provenance between raw data and derived results
-- confusing a successful backtest with a production trading system
-
-SHARK treats those as architecture problems rather than footnotes.
+SHARK treats those as architecture and experimental-design problems rather than footnotes.
 
 ## Current laboratory
 
-The canonical intraday research environment currently contains:
+The canonical intraday environment currently contains:
 
-- 200 liquid U.S. equities in a fixed research universe
-- approximately 720 calendar days of history
-- native 5-minute bars
-- 7,659,672 frozen regular-session baseline bars
-- Alpaca historical SIP data as acquisition evidence
+- **200 liquid U.S. equities** in a versioned research universe
+- approximately **720 calendar days** of history
+- native **5-minute bars**
+- **7,659,672 frozen regular-session baseline bars**
+- Alpaca SIP historical data as acquisition evidence
 - PostgreSQL as canonical research memory
 - immutable source evidence with content hashes and provenance
 
-The system is research infrastructure. It does not claim a profitable strategy, execution authority, or investment recommendation.
+The pattern engine currently ships **three built-in detector families**: directional n-grams, turning-angle structure, and triangle/path-ratio geometry. Its accepted retrospective gate records **508 passing tests**, including **152 native PostgreSQL tests** and **174 focused Pattern Engine Room tests**.
 
 ## System shape
 
@@ -44,21 +43,19 @@ flowchart LR
     D --> E[Detector registry]
     E --> F[Raw candidates]
     F --> G[Retrospective and cross-sectional tests]
-    G --> H[Research ranking]
-    H --> I[New hypothesis or rejection]
+    G --> H[Research decision]
+    H --> I[Promote, refine, or reject]
 ```
 
-The detector only sees information available at its research timestamp. Evaluation can inspect the already-known future afterward, but it cannot change what the detector originally observed.
+The detector sees only information available at its research timestamp. Retrospective evaluation can inspect the already-known future afterward, but cannot alter what the detector originally observed.
 
-## Research constitution
+## Research rules
 
-### Data has veto authority
+### Frozen tests
 
-A pattern is not rescued by repeatedly changing thresholds, horizons, samples, or transformations after validation evidence has been inspected. If a theory-driven test fails, the default result is rejection.
+A theory-driven experiment freezes the observable, transformation, statistic, horizon, information set, null, and acceptance rule before validation or holdout results are inspected. Changing one of those after inspection creates a new experiment.
 
-A new specification becomes a new experiment.
-
-### Establish state before prediction
+### State before prediction
 
 The preferred sequence is:
 
@@ -72,59 +69,67 @@ observable
 -> prediction
 ```
 
-This reduces the risk of optimizing a prediction target before establishing that the underlying market state is real and persistent enough to matter.
+Prediction is not forbidden earlier, but it is not allowed to substitute for evidence that the underlying state exists.
 
-### Statistical structure is not automatically alpha
+### Economic validation comes later
 
-A result must survive relevant economic frictions before it deserves to be called trading alpha. Depending on the strategy, that can include spread, slippage, latency, market impact, borrow, option liquidity, carry, model error, and execution delay.
+Statistical structure is not called trading alpha merely because a statistic is significant. A later strategy must survive the frictions relevant to its implementation, such as spread, slippage, latency, market impact, borrow, option liquidity, carry, hedging, and execution delay.
 
-### Mathematics is a tool, not an ideology
+### Methods are subordinate to the question
 
-The research program is free to combine methods from geometry, stochastic processes, information theory, topology, optimal transport, spectral analysis, econometrics, control theory, and other compatible fields. Novel constructions are acceptable when assumptions are explicit, operations are valid, information boundaries are causal, and claims remain falsifiable.
+The current engine uses concrete geometric and sequence representations, cross-sectional and retrospective interrogation, permutation and bootstrap tests, and deterministic fingerprints. New mathematical methods are useful only when their assumptions and information boundaries are explicit and the resulting claim is falsifiable.
+
+## A completed experiment
+
+The first completed frozen state experiment, `O0-MA-5M-MAGNITUDE-ACTIVITY-STRUCTURE-v1`, asked whether magnitude and activity carry persistent within-session structure and whether their joint state contains incremental information beyond the two marginals.
+
+The accepted run used:
+
+- **13 symbols**, including AAPL plus 12 deterministic selections from the 200-equity universe
+- **120 sessions per symbol**, split into 60 train, 30 confirmation, and 30 final-holdout sessions
+- native 5-minute bars, **78 slots per session**
+- lags from **5 to 60 minutes**
+- **5,000 permutation/null replicates** and **10,000 cluster-bootstrap replicates** at the relevant stages
+- a fresh immutable result bundle with deterministic worker-independent RNG
+
+The result was deliberately mixed rather than forced into a success narrative:
+
+> **`PASS_PRIMITIVE_PERSISTENCE_ONLY`**
+
+On final holdout, clock-normalized absolute return magnitude, log volume, and log trade count each showed positive persistence at 20 to 60 minute lags. At the smallest qualifying lag, all 13 symbols agreed in sign. Activity persistence was much larger than magnitude persistence.
+
+The stronger joint-state hypothesis did **not** pass. Across both magnitude×volume and magnitude×trade-count families, **0 of 24 family-lag tests qualified** after the frozen circular-displacement null and multiple-testing correction. The smallest adjusted q-value was 0.175, above the pre-registered 0.05 gate.
+
+That negative result is retained as the result. The experiment was not rewritten to promote the joint state.
+
+## Corrections before the accepted run
+
+The experiment also records implementation errors discovered before scientific output existed. A few examples:
+
+- a bootstrap implementation accidentally collapsed repeated session draws, invalidating the intended cluster resampling
+- an RNG scheme based on name lengths could collide across equal-length symbols
+- canonical-complete-through metadata could silently default in a way that allowed an incomplete database to look acceptable
+- a Stage B weighting path could fall back to uniform weights because the wrong session list was supplied
+- the first sequential implementation was projected at roughly 183 hours; removing redundant computation and using eight workers reduced the accepted run to about **22 minutes** without changing the frozen statistic
+
+Each correction was made before Stage A or Stage B scientific statistics were visible. The accepted record explicitly reports **no post-result scientific adaptation**.
 
 ## Canonical data architecture
 
-Raw acquisition artifacts are immutable evidence. Researchers normally work through PostgreSQL rather than reparsing raw files.
+Raw acquisition artifacts are immutable evidence. Researchers normally work through PostgreSQL rather than reparsing source files.
 
-Each canonical bar can be traced back to the evidence object that produced it. Re-importing identical evidence is a no-op. Conflicting historical observations fail closed rather than silently overwriting the past.
+Each canonical bar can be traced to the evidence object that produced it. Re-importing identical evidence is a no-op. Conflicting historical OHLC or volume observations fail closed rather than silently rewriting the past.
 
-The research universe is versioned explicitly. A universe identifier never silently means whatever membership happens to be current at query time.
-
-## Technology
-
-The private implementation uses:
-
-- OCaml 5.2+
-- Dune
-- PostgreSQL
-- Caqti
-- Lwt
-- Lacaml
-- Domainslib
-- Yojson
-- OUnit
-- Python only where needed around provider acquisition or external tooling
-
-The project deliberately prefers a strongly typed research core and keeps data acquisition evidence separate from canonical analytical memory.
+The universe is also an identified object. An experiment binds to an exact universe version instead of inheriting whatever ticker list happens to be current later.
 
 ## Why OCaml
 
-OCaml is not used as aesthetic signaling. It is useful here because the research system benefits from:
-
-- explicit types for information boundaries and state transitions
-- compile-time detector registration
-- functional decomposition of mathematical transformations
-- predictable native execution
-- a smaller runtime surface than a notebook-first research stack
-
-Python and R remain available where their scientific ecosystems are materially stronger, but the canonical engine is not designed around ad hoc notebooks.
+The canonical research core uses OCaml 5.2+, Dune, Caqti, Lwt, Lacaml, Domainslib, Yojson, and OUnit. The choice is practical: explicit types help encode information boundaries and state transitions, detector registration is compile-time controlled, and the research engine stays separate from ad hoc notebook state. Python remains available where provider or scientific tooling makes it the better boundary language.
 
 ## Current boundary
 
-SHARK is an active research laboratory. Its present outputs are mathematical candidates and empirical findings, not production trading instructions. Research hypotheses, models, and individual alphas are intentionally disposable. The durable asset is the process that can generate, test, reject, and replace them without corrupting the evidence base.
+SHARK has a real data corpus, executable research engine, frozen experiments, retrospective proofs, and a completed first state experiment. It does **not** claim return predictability from that experiment, executable alpha, a profitable strategy, or production trading authority.
 
-## What this case study demonstrates
-
-The project is primarily about scientific discipline under adversarial data. The central question is not whether a model can fit market history. It is whether a claimed state existed at the time, survived hostile controls, remained economically relevant, and can be reproduced from sealed evidence.
+The useful output is not only a positive finding. A well-specified negative result that closes a branch without contaminating the next experiment is equally part of the research record.
 
 [Architecture](ARCHITECTURE.md) · [Technical decisions](TECHNICAL_DECISIONS.md) · [Validation](VALIDATION.md) · [Back to profile](https://github.com/Andy11-cpu)
