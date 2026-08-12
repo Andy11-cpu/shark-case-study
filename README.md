@@ -10,8 +10,6 @@ The implementation and active research programme remain private. This case study
 
 I own the research thesis, experimental rules, information boundaries, architecture constraints, acceptance criteria, and research decisions for SHARK. I review implementation and evidence against those rules, including whether a result is promoted, narrowed, rejected, or closed.
 
-AI-assisted engineering tools are part of the build workflow. Scientific authority remains with frozen specifications, immutable evidence, executable validation, and the recorded scientist decision.
-
 **Period:** active quantitative research programme, 2026.  
 **Current status:** the local research laboratory is operational, the 200-equity frozen baseline is represented in canonical PostgreSQL memory, the OCaml research engine is executable, and scientific-lifecycle integrity is enforced by deterministic repository-wide verification. SHARK is research infrastructure, not a production trading system.
 
