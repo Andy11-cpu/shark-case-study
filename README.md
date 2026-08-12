@@ -2,7 +2,7 @@
 
 ## Scientific quantitative research infrastructure
 
-SHARK is a short-horizon quantitative research laboratory for liquid U.S. equities. Its purpose is not to defend a preferred model or produce a favorable backtest. It is to discover measurable market structure, attempt to falsify it, preserve the scientific record, and advance only the effects that survive increasingly difficult tests.
+SHARK is a short-horizon quantitative research laboratory for liquid U.S. equities. Its purpose is to discover measurable market structure, attempt to falsify it, preserve the scientific record, and advance only the effects that survive increasingly difficult tests.
 
 The implementation and active research programme remain private. This case study presents the architecture, operating rules, selected completed research, and current scientific boundaries.
 
@@ -13,7 +13,7 @@ I own the research thesis, experimental rules, information boundaries, architect
 AI-assisted engineering tools are part of the build workflow. Scientific authority remains with frozen specifications, immutable evidence, executable validation, and the recorded scientist decision.
 
 **Period:** active quantitative research programme, 2026.  
-**Current status:** the local research laboratory is operational, the 200-equity intraday corpus is frozen in canonical PostgreSQL memory, the OCaml research engine is executable, and the scientific lifecycle is machine-verified. SHARK is research infrastructure, not a production trading system.
+**Current status:** the local research laboratory is operational, the 200-equity frozen baseline is represented in canonical PostgreSQL memory, the OCaml research engine is executable, and scientific-lifecycle integrity is enforced by deterministic repository-wide verification. SHARK is research infrastructure, not a production trading system.
 
 ## Research objective
 
@@ -89,7 +89,7 @@ Machine output and scientific conclusion are deliberately separate. Evidence tha
 
 Before new work advances, SHARK can render a deterministic Context Pack from this graph. The pack reconstructs relevant lineage, prior results, lessons, evidence exposure, closure state, and unresolved questions without semantic search, embeddings, an LLM, market-data access, or network access.
 
-The lifecycle is executable. Repository-wide verification fails closed when scientific state is internally inconsistent, when evidence authority is invalid, or when frozen experiment identity has been altered.
+The lifecycle is executable. Repository-wide verification fails closed when scientific state is internally inconsistent, evidence authority is invalid, or frozen experiment identity has been altered.
 
 ## Selected research record
 
@@ -104,7 +104,7 @@ The machine initially reported `PASS_PRIMITIVE_PERSISTENCE_ONLY`. A later forens
 - the isolated incremental joint-state finding appeared only on confirmation evidence and did not reproduce on final evidence
 - the branch is closed with **no stable incremental state established**
 
-The correction is part of the result, not an exception to it. The original machine output remains preserved alongside the later scientist disposition.
+The correction is part of the result. The original machine output remains preserved alongside the later scientist disposition.
 
 ### Killing an invalid instrument before market evidence
 
@@ -114,7 +114,7 @@ Its nominal 5% procedure rejected a valid synthetic null in **1,815 of 2,000 rep
 
 That failure became a reusable methodological constraint: a future instrument must demonstrate valid-null calibration under hostile synthetic stress before receiving market-data authority.
 
-This is the intended research behavior. A plausible idea does not earn protection from a failed test.
+A plausible idea does not earn protection from a failed test.
 
 ## Research stance
 
@@ -122,15 +122,15 @@ SHARK is explicitly cumulative. Established quantitative finance, statistics, ma
 
 Potential tools include geometry, stochastic processes, nonlinear dynamics, rough paths, information theory, topology, optimal transport, spectral methods, statistical mechanics, control theory, optimization, and machine learning. No framework receives authority from elegance or novelty alone.
 
-The useful question is not whether a method is new to SHARK. It is whether a causally valid construction explains residual structure that survives simpler models, hostile nulls, independent evidence, and economic constraints.
+The relevant question is whether a causally valid construction explains residual structure that survives simpler models, hostile nulls, independent evidence, and economic constraints.
 
 Public literature narrows the search space. Where strong prior work already explains a phenomenon, SHARK should reproduce or benchmark it rather than rename it. Novelty, if it emerges, must come from a reproducible empirical effect, method, or combination that remains unexplained after comparison with the existing literature.
 
 ## Research frontier
 
-The current programme is moving beyond aggregate bar structure toward richer questions about market state, liquidity response, path dependence, cross-sectional interaction, and conditional future distributions.
+The programme is extending beyond aggregate bar structure toward richer questions about market state, liquidity, path dependence, cross-sectional interaction, and conditional future distributions.
 
-The working hypothesis is not that complexity creates alpha. It is that difficult, state-dependent interactions across market information may contain structure that simpler representations leave unresolved.
+The working premise is not that complexity creates alpha. It is that state-dependent interactions across market information may contain residual structure that simpler representations do not resolve.
 
 Active hypotheses, exact statistics, thresholds, data partitions, and prospective trading mechanisms remain private until they are scientifically closed or can be disclosed without compromising ongoing work.
 
@@ -160,6 +160,6 @@ historical structure
 
 SHARK currently makes no public claim of executable alpha, profitability, or production trading authority.
 
-The claim is narrower and more important at this stage: the laboratory is built to make unsupported conclusions difficult to preserve and useful failures difficult to forget.
+The present claim is narrower: the laboratory is built to make unsupported conclusions difficult to preserve and useful failures difficult to forget.
 
 [Architecture](ARCHITECTURE.md) · [Technical decisions](TECHNICAL_DECISIONS.md) · [Validation](VALIDATION.md) · [Back to profile](https://github.com/Andy11-cpu)
