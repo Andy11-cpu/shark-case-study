@@ -8,7 +8,7 @@ The implementation and research history remain private. This case study presents
 
 ## My role
 
-I own the research thesis, experimental rules, information boundaries, architecture constraints, acceptance criteria, and research decisions for SHARK. I review implementation and evidence against those rules, including whether a result is promoted, rejected, or sent back for another experiment. AI-assisted engineering tools are part of the build workflow; scientific authority remains with the frozen specification and immutable result bundle.
+I own the research thesis, experimental rules, information boundaries, architecture constraints, acceptance criteria, and research decisions for SHARK. I review implementation and evidence against those rules, including whether a result is promoted, rejected, or sent back for another experiment. Scientific authority remains with the frozen specification and immutable result bundle.
 
 **Period:** active quantitative research program, August 2026.  
 **Current status:** the canonical research laboratory is operational locally, the 200-equity intraday corpus is frozen in PostgreSQL, the OCaml pattern engine and retrospective proof system are executable, and the first frozen state experiment has completed. The system is research infrastructure, not a production trading stack.
